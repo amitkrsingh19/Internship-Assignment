@@ -1,0 +1,38 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Environment variables (CRITICAL: Do not upload your secrets!)
+.env
+.env.test
+.env.local
+
+# Docker
+.dockerignore
+# Optional: if you don't want to save local DB data in git
+docker-data/
+
+# Prisma
+/prisma/migrations/
+# If you want to keep migrations but ignore the local SQLite db (if used)
+*.db
+*.db-journal
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs.txt
+
+# OS Metadata
+.DS_Store
+Thumbs.db
+
+# Editor folders
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj

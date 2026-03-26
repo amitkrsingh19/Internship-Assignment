@@ -1,0 +1,49 @@
+### GET /
+GET http://localhost:8383
+
+### POST - Register User
+POST http://localhost:8383/auth/register
+Content-Type: application/json
+
+{
+  "username":"ranjamit1@gmail.com",
+  "password":"amit@2003"
+}
+
+### POST - Login User 
+POST http://localhost:8383/auth/login
+Content-Type: application/json
+
+{
+  "username":"ranjamit1@gmail.com",
+  "password":"amit@2003"
+}
+
+### GET -User's all the todos
+GET http://localhost:8383/todos/
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzczMTY1OTY1LCJleHAiOjE3NzMxNjk1NjV9.mTlPLHL4W2OTHQfQmiZQsZwFhcLmCwqt5ZZpyIStrA4
+Content-Type: application/json
+
+### POST - ADD Tasks in todos
+POST http://localhost:8383/todos/
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzczMTY2MTE1LCJleHAiOjE3NzMxNjk3MTV9.jgd6lHg43cblXzDK-emfkUvHpUAnwEKvgc_qm_AyjQM
+Content-Type: application/json
+
+{
+  "task":"go to gym at 6pm"
+}
+
+
+### PUT -Update users todo
+PUT http://localhost:8383/todos/3
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzczMTY1NTc1LCJleHAiOjE3NzMxNjkxNzV9.fBTmDtoIeWN-XrYE3f4Z9Usu_kIJSDQ-FDVoSBE62dc
+Content-Type: application/json
+
+{
+  "completed":1
+}
+
+### DELETE - Delete users todo
+DELETE http://localhost:8383/todos/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzczMTY2MTE1LCJleHAiOjE3NzMxNjk3MTV9.jgd6lHg43cblXzDK-emfkUvHpUAnwEKvgc_qm_AyjQM
+Content-Type: application/json
