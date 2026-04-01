@@ -1,24 +1,25 @@
-# Use an official node js version
+# Use Node 22 Alpine for a small footprint
 FROM node:22-alpine
 
-RUN apk add --no-cache openssl
-# Set working directory in docker
+# Prisma needs openssl and libc6-compat to run on Alpine
+RUN apk add --no-cache openssl libc6-compat
+
 WORKDIR /app
 
-# Copy package.json and package-lock.json
-COPY package*.json .
-
-# Install the dependencies
+# Install dependencies first (better caching)
+COPY package*.json ./
 RUN npm install
 
-# Copy the rest of the codebase (including the rest of source code)
+# Copy everything else
 COPY . .
 
-# Generate prisma client
+# Generate the Prisma client during the build
 RUN npx prisma generate
-# Expose PORT
+
+# We will use 8383 as your app's internal port
 EXPOSE 8383
 
-# Define the command to run your application
-# Use a shell string to run multiple commands
-CMD npx prisma db push && npx prisma db push --accept-data-loss && node ./src/server.js
+# Start command
+# Using the array format ["npm", "run", "dev"] is better, 
+# but since you need multiple commands, we'll use a shell script style:
+CMD npx prisma db push && node ./src/server.js
