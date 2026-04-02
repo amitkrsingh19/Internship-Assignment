@@ -5,6 +5,7 @@ import {fileURLToPath} from 'url'
 import authRoutes from '../src/routes/v1/authRoutes.js'
 import todoRoutes from '../src/routes/v1/todoRoutes.js'
 import {authMiddleware} from '../src/middleware/authMiddleware.js'
+import cors from 'cors'
 
 // Must match the frontend + Dockerfile expectation.
 const PORT = process.env.PORT || 8383
@@ -17,6 +18,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 // Middlewares
+app.use(cors)
 app.use(express.json())
 app.use(express.static(path.join(__dirname,'../public')))
 
