@@ -17,6 +17,7 @@ function authMiddleware(req, res, next){
 
   jwt.verify(token, jwtSecret, (err, decoded) => {
     if(err){
+      console.error("CRITICAL: JWT Secret is missing from .env");
       return res.status(401).json({message:"Invalid Token"})
     }
     req.userId = decoded.id
@@ -25,13 +26,5 @@ function authMiddleware(req, res, next){
   
 }
 
-const authorize = (role) => {
-  return (req,res,next) =>{
-    if(req.role !== role){
-      return res.status(403).json({message:"Unauthorized"})
-    }
-    next()
-  }
-  }
 
-export {authMiddleware, authorize};
+export {authMiddleware};
